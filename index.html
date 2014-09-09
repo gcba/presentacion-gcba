@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="es">
+
+	<head>
+		<meta charset="utf-8" />
+		<title>Buenos Aires Ciudad</title>
+		<link href="css/style-edit.css" rel="stylesheet"/>
+	</head>
+
+	<body>
+
+		<nav class="static">
+			<div class="logo">
+				Buenos Aires Ciudad
+			</div>
+			<div class="ministerio">
+				En todo estás vos
+			</div>
+		</nav>
+
+		<section class="dashboard">
+			<div id="content">
+				<div id="options">
+
+					Orden del d&iacute;a: 
+					
+				  	<input type="checkbox" data-toggle="switch" unchecked name="oddoff" data-filter-value="orden" id="odd"/>
+
+					<select class="filter option-set" data-filter-group="direccionGeneral">
+						<option data-filter-value="" selected="selected">Ver todas las DG</option>
+						<option data-filter-value=".DGIGA">Dirección General de Innovación y Gobierno Abierto</option>
+						<option data-filter-value=".DGM">Dirección General de Movilización</option>
+						<option data-filter-value=".DGU">Dirección general de Urbanismo</option>
+					</select>
+
+					<select class="filter option-set" data-filter-group="subsecretarias">
+						<option data-filter-value="" selected="selected">Ver todas las subsecretarias</option>
+						<option data-filter-value=".DGIGA">Subsecretaria de Algo</option>
+						<option data-filter-value=".SSE">Subsecretaria de Esto</option>
+					</select>
+
+					<select class="filter option-set" data-filter-group="prioridad">
+						<option data-filter-value="" selected="selected">Ver todas las prioridades</option>
+						<option data-filter-value=".A">A</option>
+						<option data-filter-value=".B">B</option>
+						<option data-filter-value=".C">C</option>
+						<option data-filter-value=".D">D</option>
+					</select>
+
+				</div>
+
+				<div id="container" class="clearfix">
+					<script id="hr-template" type="text/x-handlebars-template">
+						{{#if cells.orden}}
+							<div class="element {{cells.nombre_del_proyecto}} {{cells.prioridad}} {{cells.dg_sigla}} {{cells.ss_sigla}} clickable orden" data-number="{{cells.prioridad}}" onclick="$('#slide{{cells.nombreLink}}').animatescroll({scrollSpeed:1000,easing:'easeInOutQuint'});">
+						{{else}}
+							<div class="element {{cells.nombre_del_proyecto}} {{cells.prioridad}} {{cells.dg_sigla}} {{cells.ss_sigla}}" data-number="{{cells.prioridad}}">
+						{{/if}}
+
+						<h3 class="proyecto">{{cells.nombre_del_proyecto}}</h3>
+
+							{{#if cells.dg_sigla}}
+								<span class="colaboracion principal">{{cells.dg_sigla}}</span>
+							{{/if}}
+
+							{{#if cells.subsecretaria}}
+								<span class="colaboracion">{{cells.subsecretaria}}</span>
+							{{/if}}
+							<p class="number">{{cells.prioridad}}</p>
+							<p class="ministerioCode">{{cells.ss_sigla}}</p>
+						</div>
+					</script>
+				</div>
+			</div>
+		</section>
+
+		<div id="slides-container">
+			<script id="slides-template" type="text/x-handlebars-template">
+				{{#if cells.orden}}
+					<section class="slides {{cells.eje}}" id="slide{{cells.nombreLink}}" data-proyecto="{{cells.nombreLink}}" data-eje="{{cells.eje}}" data-scroll-index="{{position-proyectos}}">
+
+					<section class="inicio">
+						<h1>{{cells.nombre_del_proyecto}}</h1>
+						<h2>{{cells.DG}}</h2>
+					</section>
+
+					{{#if cells.descripcion}}
+						<section class="slide-template contexto">
+							<h1>descripcion</h1>
+							<h2>{{cells.descripcion}}</h2>
+						</section>
+					{{/if}}
+
+					{{#if cells.objetivo}}
+						<section class="slide-template objetivo">
+							<h1>Objetivo</h1>
+							<h2>{{cells.objetivo}}</h2>
+						</section>
+					{{/if}}
+
+					{{#if cells.meta}}
+						<section class="slide-template meta">
+							<h1>Meta</h1>
+							<h2>{{cells.meta}}</h2>
+						</section>
+					{{/if}}
+
+				{{/if}}
+			</script>
+		</div>
+
+		<footer>
+
+			<div class="volver">
+				<a href="#Dashboard" onclick="$('.dashboard').animatescroll({scrollSpeed:1000,easing:'easeInOutQuint'});">Dashboard</a>
+			</div>
+		</footer>
+
+		<script src="js/jquery-1.10.2.min.js"></script>
+		<script src="js/jquery.sheetrock.min.js"></script>
+		<script src="js/handlebars.min.js"></script>
+		<script src="js/animatescroll.js"></script>
+		<script src="js/jquery.isotope.min.js"></script>
+		<script src="js/scrollIt.min.js"></script>
+		<script src="js/app.js"></script>
+
+		<script>
+			$.scrollIt();
+		</script>
+	</body>
+</html>
