@@ -447,7 +447,7 @@ body {
   display: block;
   padding: 10px;
   margin: 250px auto 20px;
-  height: 1600px; }
+  height: 100%; }
 
 .element {
   width: 250px;
